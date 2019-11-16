@@ -6,6 +6,8 @@ import numpy as np
 def get_color(text):
     colors_to_count, mood_to_count = colors_count(text)
     
+    print(mood_to_count)
+    
     if mood_to_count['light'] + mood_to_count['dark'] > 0:
         mood_ratio = mood_to_count['light']/(mood_to_count['light'] + mood_to_count['dark'])
     else:
@@ -48,7 +50,7 @@ def get_themes_from_text(text):
 
 def colors_count(cleaned_text):
     colors_to_count = {}
-    mood_to_count = {}
+    mood_to_count = {'light': 0, 'dark': 0}
     for word in cleaned_text:
         
         colors_to_count = get_colors_from_text(cleaned_text)
