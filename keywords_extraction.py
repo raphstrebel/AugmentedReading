@@ -27,7 +27,8 @@ def get_keywords_from_text(text):
     for w in text_without_stop_words:
         word_tok = tokenizer.tokenize(w)
         for w_t in word_tok:
-            keywords.append(lemmatizer.lemmatize(w_t, "v"))
+            if len(w_t) > 1:
+                keywords.append(lemmatizer.lemmatize(w_t, "v"))
 
     return keywords
 
