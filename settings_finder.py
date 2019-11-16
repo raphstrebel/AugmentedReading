@@ -1,4 +1,4 @@
-import cv2 
+import cv2
 
 key = cv2. waitKey(1)
 webcam = cv2.VideoCapture(1)
@@ -10,9 +10,9 @@ def make_1080p(webcam):
     webcam.set(4, 1080)
 
 def set_focus(webcam, focus_value):
-    webcam.set(cv2.CAP_PROP_AUTOFOCUS, 0)
+    #webcam.set(cv2.CAP_PROP_AUTOFOCUS, 0)
     print("setting focus to: ", focus_value)
-    webcam.set(cv2.CAP_PROP_FOCUS, focus_value)
+    #webcam.set(cv2.CAP_PROP_FOCUS, focus_value)
 
 #def capture_frame(webcam, window_size):
 #    check, frame = webcam.read()
@@ -27,6 +27,8 @@ while True:
         check, frame = webcam.read()
         #print(check) #prints true as long as the webcam is running
         #print(frame) #prints matrix values of each framecd 
+
+        frame = cv2.resize(frame, (960, 540))   
         cv2.imshow("Capturing", frame)
         key = cv2.waitKey(1)
         if key == ord('s'): 
