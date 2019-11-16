@@ -7,7 +7,7 @@ import rake_nltk
 from rake_nltk import Rake
 import string
 
-nltk.download('wordnet')
+#nltk.download('wordnet')
 
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize
