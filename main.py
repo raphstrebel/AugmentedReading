@@ -1,5 +1,7 @@
 from video_capture import *
 from text_extraction import *
+#from lamp_handler import *
+from color_getter import *
 import cv2
 import time
 
@@ -43,7 +45,10 @@ if __name__=="__main__":
         #### MAIN BODY OF THE LOOP
         frame = capture_frame(webcam, WINDOW_SIZE)
         text = extract_text(frame)
+        color = get_color_for_words(text)
+        #displayNewColor(color)
         display_frame(frame, text)
+
         #### END MAIN BODY
 
         key = cv2.waitKey(1)
