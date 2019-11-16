@@ -36,9 +36,9 @@ def display_frame(frame, text, color, iteration):
 
 	### print keywords occurences
 	occurrences = get_occurrences_from_text(text)
-	for i in range(len(text)):
+	for i in range(len(occurrences)):
 		bottomLeftCornerOfText = (430, i * 40 + 20)
-		cv2.putText(yo2, text[i], bottomLeftCornerOfText, font, 1, white, 2)
+		cv2.putText(yo2, occurrences[i], bottomLeftCornerOfText, font, 1, white, 2)
 
 	### print iteration number
 	cv2.putText(yo2, "iteration: " + str(iteration), (700, 80), font, 2, white, 2)
@@ -54,6 +54,9 @@ def get_occurrences_from_text(text):
 if __name__=="__main__":
     webcam = setup_webcam(FOCUS_VALUE)
     iteration = 1
+
+    party_mode()
+
     while(True):
         capture_frame(webcam, WINDOW_SIZE) # To remove the last frame from the buffer
         
@@ -61,7 +64,7 @@ if __name__=="__main__":
         frame = capture_frame(webcam, WINDOW_SIZE)
         text = extract_text(frame)
         (r, g, b, brightness) = text_to_colors_and_emotions(text)
-        displayNewColor(r, g, b, brightness=brightness)
+        display_new_color(r, g, b, brightness=brightness)
         display_frame(frame, text, (r,g,b), iteration)
         #### END MAIN BODY
 
