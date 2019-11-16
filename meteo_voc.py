@@ -26,5 +26,13 @@ meteo_voc = {
     'thunderstorm': 'storm',
     'tornado': 'storm',
     'water': 'water',
-    'wind': 'wind'
+    'wind': 'wind',
+    'forest': 'green',
+    'grass': 'green',
+    'burn': 'fire',
+    'leaves': 'green',
+    'vegetation': 'green',
+    'plants': 'green',
+    'lawns': 'green',
+    'crop': 'green'
 }
