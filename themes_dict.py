@@ -1,13 +1,46 @@
 from bs4 import BeautifulSoup as bs
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait 
 import requests as rq
+
+def colors_count(cleaned_text):
+    colors_to_count = {}
+    mood_to_count = {}
+    for word in cleaned_text:
+        if word in colors:
+            c = colors[word]
+            if c in colors_to_count.keys():
+                colors_to_count[c] += 1
+            else:
+                colors_to_count[c] = 1
+        if word in mood:
+            m = mood[word]
+            if m in mood_to_count.keys():
+                mood_to_count[m] += 1
+            else:
+                mood_to_count[m] = 1
+                
+    return colors_to_count, mood_to_count
+
+
+def get_dict():
+	themes = ["fire", "rain", "wind", "forest","water"]
+	themes_dict = {}
+	for theme in themes:
+	    link = "https://inspirassion.com/en/related/" + theme
+	    req = rq.get(link)
+	    page = bs(req.text)
+	    strongs = page.find_all("strong")
+	    for val in strongs:
+	        themes_dict[val.text] = theme
+	return themes_dict
 
 colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet']
 
 mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
 
-themes_dict = {'water': 'water',
+themes_dict = {
+ 'dragon': 'dragon',
+ 'monster': 'dragon',
+ 'water': 'water',
  'burn': 'fire',
  'firing': 'fire',
  'gunshots': 'fire',
@@ -168,15 +201,15 @@ themes_dict = {'water': 'water',
  'wash': 'water',
  'flammable': 'fire',
  'flow': 'water',
- 'bathwater': 'water'}
-def get_dict():
-	themes = ["fire", "rain", "wind", "forest","water"]
-	themes_dict = {}
-	for theme in themes:
-	    link = "https://inspirassion.com/en/related/" + theme
-	    req = rq.get(link)
-	    page = bs(req.text)
-	    strongs = page.find_all("strong")
-	    for val in strongs:
-	        themes_dict[val.text] = theme
-	return themes_dict
+ 'bathwater': 'water',
+ 'car': 'engine',
+ 'taxi': 'city',
+ 'crowd': 'city',
+ 'bus': 'engine',
+ 'transport': 'engine',
+ 'tramway': 'city',
+ 'metro': 'city',
+ 'plane': 'engine',
+ 'engine': 'engine',
+ 'bike': 'engine'
+}
