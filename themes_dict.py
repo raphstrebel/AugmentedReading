@@ -87,7 +87,7 @@ colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet
 
 mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
 
-element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray'}
+element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray'}
 
 themes_dict = {
  'dragon': 'dragon',
@@ -126,7 +126,7 @@ themes_dict = {
  'sandstorm': 'wind',
  'wildfire': 'fire',
  'lightning': 'storm', ###
- 'sun': 'fire',
+ 'sun': 'orange',
  'deluged': 'rain',
  'crackles': 'fire',
  'torches': 'fire',
@@ -207,6 +207,9 @@ themes_dict = {
  'trees': 'forest',
  'lake': 'water',
  'park': 'forest',
+ 'coast': 'water',
+ 'lake': 'water',
+ 'hell': 'fire',
  'landscape': 'forest',
  'inland': 'forest',
  'lakes': 'water',
