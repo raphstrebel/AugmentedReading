@@ -1,4 +1,5 @@
 import cv2 
+import numpy as np
 
 
 def make_1080p(webcam):
@@ -14,6 +15,7 @@ def capture_frame(webcam, window_size):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     frame = cv2.adaptiveThreshold(frame, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, window_size, 25)
     frame = cv2.resize(frame, (960, 540))
+    frame = np.rot90(frame)
     return frame
 
 def setup_webcam(focus_value):
