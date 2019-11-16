@@ -85,17 +85,26 @@ def get_dict():
 
 colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet', 'gray']
 
-mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
+mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'cold':'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
 
-element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray'}
+element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white'}
 
 themes_dict = {
+ 'snow':'cold',
+ 'snowflake':'cold',
+ 'blizzard':'cold',
+ 'blizzards':'cold',
+ 'cold':'cold',
+ 'snowflakes':'cold',
  'dragon': 'dragon',
  'monster': 'dragon',
  'water': 'water',
  'gunshots': 'fire',
  'lighted': 'fire',
  'fire': 'fire',
+ 'lava': 'fire',
+ 'magma': 'fire',
+ 'volcano': 'fire',
  'flames': 'fire',
  'light': 'fire',
  'flame': 'fire',
