@@ -5,17 +5,41 @@ from nltk.stem.porter import PorterStemmer
 
 import rake_nltk
 from rake_nltk import Rake
+import string
 
 nltk.download('wordnet')
 
 from nltk.corpus import stopwords 
-from nltk.tokenize import word_tokenize 
+from nltk.tokenize import word_tokenize
 
 def get_keywords_from_text(text):
     stop_words = set(stopwords.words('english')) 
+    text = text.lower().split(" ")
+    
+
+    text_without_stop_words = [w for w in text if (not w in stop_words) and (not w in string.punctuation)] 
+
+    tokenizer = RegexpTokenizer(r'\w+')  
+    lemmatizer = WordNetLemmatizer()
+    
+    keywords = []
+
+    for w in text_without_stop_words:
+        word_tok = tokenizer.tokenize(w)
+        for w_t in word_tok:
+            keywords.append(lemmatizer.lemmatize(w_t, "v"))
+
+    return keywords
+
+def get_keywords_from_text_other(text):
+    stop_words = set(stopwords.words('english')) 
     word_tokens = word_tokenize(text.lower()) 
+    
+    print(word_tokens)
 
     filtered_sentence = [w for w in word_tokens if not w in stop_words] 
+    
+    print(filtered_sentence)
 
     tokenizer = RegexpTokenizer(r'\w+')  
     lemmatizer = WordNetLemmatizer()
