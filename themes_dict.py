@@ -6,8 +6,6 @@ import numpy as np
 def get_color(text):
     colors_to_count, mood_to_count = colors_count(text)
     
-    print(mood_to_count)
-    
     if mood_to_count['light'] + mood_to_count['dark'] > 0:
         mood_ratio = mood_to_count['light']/(mood_to_count['light'] + mood_to_count['dark'])
     else:
@@ -19,9 +17,12 @@ def get_color(text):
     for color, count in colors_to_count.items():
         final_color += np.array(rgba_colors.to_rgba(color))
         total += 1
+    
+    if total > 0:
+        final_color /= total
+    else:
+        final_color = [1,1,1,1]
         
-    final_color /= total
-    final_color *= 255
     final_color[3] = mood_ratio
     
     return final_color
@@ -125,6 +126,7 @@ themes_dict = {
  'sandstorm': 'wind',
  'wildfire': 'fire',
  'lightning': 'storm', ###
+ 'sun': 'fire',
  'deluged': 'rain',
  'crackles': 'fire',
  'torches': 'fire',
