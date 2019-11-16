@@ -1,7 +1,6 @@
 import cv2 
 import numpy as np
 
-
 def make_1080p(webcam):
     webcam.set(3, 1920)
     webcam.set(4, 1080)
