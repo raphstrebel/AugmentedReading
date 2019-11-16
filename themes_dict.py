@@ -95,6 +95,8 @@ themes_dict = {
  'blizzard':'cold',
  'blizzards':'cold',
  'cold':'cold',
+ 'beach':'water',
+ 'sand':'water',
  'snowflakes':'cold',
  'dragon': 'dragon',
  'monster': 'dragon',
