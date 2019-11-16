@@ -12,7 +12,7 @@ LAMP_ID = "1"
 
 STATE_URL = "http://"+IP_ADDR+"/api/"+USERNAME+"/lights/"+LAMP_ID+"/state"
 
-def displayNewColor(r, g, b, saturation = 1, brightness=1):
+def displayNewColor(r, g, b, brightness=1):
     """
     Changes the color of the lamp.
 
@@ -25,11 +25,11 @@ def displayNewColor(r, g, b, saturation = 1, brightness=1):
     """
 
     h, s, v = colorsys.rgb_to_hsv(r,g,b)
+    print(h)
     hue = int(h * MAX_HUE)
+    saturation = s
 
     body = {"on":True, "sat":int(saturation * MAX_SATURATION), "bri":int(brightness * MAX_BRIGHTNESS), "hue": hue}
+    print(body)
     
     return requests.put(STATE_URL, data=json.dumps(body))
-
-
-displayNewColor(0.66666667, 0.8339869, 0.33333, saturation = 1, brightness=1)
