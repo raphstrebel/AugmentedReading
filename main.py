@@ -55,8 +55,6 @@ if __name__=="__main__":
     webcam = setup_webcam(FOCUS_VALUE)
     iteration = 1
 
-    party_mode()
-
     while(True):
         capture_frame(webcam, WINDOW_SIZE) # To remove the last frame from the buffer
         
