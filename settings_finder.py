@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 key = cv2. waitKey(1)
 webcam = cv2.VideoCapture(1)
@@ -28,7 +29,12 @@ while True:
         #print(check) #prints true as long as the webcam is running
         #print(frame) #prints matrix values of each framecd 
 
-        frame = cv2.resize(frame, (960, 540))   
+        frame = cv2.resize(frame, (960, 540))
+
+        frame = np.rot90(frame)
+
+
+
         cv2.imshow("Capturing", frame)
         key = cv2.waitKey(1)
         if key == ord('s'): 
