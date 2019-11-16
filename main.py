@@ -22,6 +22,8 @@ def display_frame(frame, text):
 	### Oufff, we're good to go :-)
 	yo2 = cv2.copyMakeBorder(yo2, 0, 0, 0, 800, cv2.BORDER_CONSTANT)
 
+	cv2.rectangle(yo, (405, 0), (430, 720), (255,0,0), 2)
+
 
 	font                   = cv2.FONT_HERSHEY_SIMPLEX 	
 	fontScale              = 1
@@ -29,7 +31,7 @@ def display_frame(frame, text):
 	lineType               = 2
 
 	for i in range(len(text)):
-		bottomLeftCornerOfText = (405, i * 40 + 20)
+		bottomLeftCornerOfText = (430, i * 40 + 20)
 		cv2.putText(yo2, text[i], bottomLeftCornerOfText, font, fontScale,fontColor,lineType)
 
 	cv2.imshow("Capturing", yo2)
