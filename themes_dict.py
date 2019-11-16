@@ -3,6 +3,10 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait 
 import requests as rq
 
+colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet']
+
+mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
+
 themes_dict = {'water': 'water',
  'burn': 'fire',
  'firing': 'fire',
