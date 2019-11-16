@@ -1,17 +1,65 @@
 from bs4 import BeautifulSoup as bs
 import requests as rq
+from matplotlib import colors as rgba_colors
+import numpy as np
+
+def get_color(text):
+    colors_to_count, mood_to_count = colors_count(text)
+    
+    if mood_to_count['light'] + mood_to_count['dark'] > 0:
+        mood_ratio = mood_to_count['light']/(mood_to_count['light'] + mood_to_count['dark'])
+    else:
+        mood_ratio = 0.5
+    
+    final_color = np.zeros(4)
+    total = 0
+    
+    for color, count in colors_to_count.items():
+        final_color += np.array(rgba_colors.to_rgba(color))
+        total += 1
+        
+    final_color /= total
+    final_color *= 255
+    final_color[3] = mood_ratio
+    
+    return final_color
+
+def get_colors_from_text(text):
+    themes = get_themes_from_text(text)
+    colors = {}
+    
+    for t in themes.keys():
+        if t in element_to_color.keys():
+            if element_to_color[t] in colors.keys():
+                colors[element_to_color[t]] += 1
+            else:
+                colors[element_to_color[t]] = 1
+    return colors
+    
+def get_themes_from_text(text):
+    themes_to_count = {}
+    for word in text:
+        if word in themes_dict.keys():
+            if themes_dict[word] in themes_to_count.keys():
+                themes_to_count[themes_dict[word]] += 1
+            else:
+                themes_to_count[themes_dict[word]] = 1
+    return themes_to_count
 
 def colors_count(cleaned_text):
     colors_to_count = {}
     mood_to_count = {}
     for word in cleaned_text:
+        
+        colors_to_count = get_colors_from_text(cleaned_text)
+        
         if word in colors:
-            c = colors[word]
+            c = word
             if c in colors_to_count.keys():
                 colors_to_count[c] += 1
             else:
                 colors_to_count[c] = 1
-        if word in mood:
+        if word in mood.keys():
             m = mood[word]
             if m in mood_to_count.keys():
                 mood_to_count[m] += 1
@@ -20,22 +68,23 @@ def colors_count(cleaned_text):
                 
     return colors_to_count, mood_to_count
 
-
 def get_dict():
-	themes = ["fire", "rain", "wind", "forest","water"]
-	themes_dict = {}
-	for theme in themes:
-	    link = "https://inspirassion.com/en/related/" + theme
-	    req = rq.get(link)
-	    page = bs(req.text)
-	    strongs = page.find_all("strong")
-	    for val in strongs:
-	        themes_dict[val.text] = theme
-	return themes_dict
+    themes = ["fire", "rain", "wind", "forest","water"]
+    themes_dict = {}
+    for theme in themes:
+        link = "https://inspirassion.com/en/related/" + theme
+        req = rq.get(link)
+        page = bs(req.text)
+        strongs = page.find_all("strong")
+        for val in strongs:
+            themes_dict[val.text] = theme
+    return themes_dict
 
-colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet']
+colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet', 'gray']
 
 mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
+
+element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray'}
 
 themes_dict = {
  'dragon': 'dragon',
