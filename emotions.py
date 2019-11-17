@@ -9,4 +9,11 @@ def get_sound_from_keywords(keywords):
     keywords_emotion = word_emotion.merge(keywords_df, on="word").drop(columns="word")
     
     return keywords_emotion.sum(axis=0).to_dict()
-    
+
+def best_emotion(emotions):
+    negative_emotions = [(emotion, count) for emotion, count in emotions if emotion not in ["joy", "positive", "negative"]]
+
+    if (emotions["positive"] >= emotions["negative"] or emotions["joy"] >= max(negative_emotions, key=lambda x: x[1])[1]):
+        return "joy"
+    else:
+        return max(negative_emotions, key=lambda x: x[1])[0]
