@@ -20,11 +20,17 @@ def get_all_parameters(text):
 
 def get_music(arg):
     emotion = arg[1]
-    return emotion_to_music[emotion]
+    if emotion:
+        return emotion_to_music[emotion]
+    else:
+        return None
 
 def get_sound(arg):
     theme = arg[2]
-    return theme_to_music[theme]
+    if theme:
+        return theme_to_music[theme]
+    else:
+        return None
 
 def get_color(arg):
     return arg[0]
