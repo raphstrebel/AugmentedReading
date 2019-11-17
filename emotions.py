@@ -1,5 +1,14 @@
 import pandas as pd
 
+emotion_to_music = {'anger': '',
+ 'disgust': '',
+ 'fear': '',
+ 'joy': '',
+ 'negative': '',
+ 'positive': '',
+ 'sadness': ''
+}
+
 def get_emotions_from_keywords(keywords):
 
     word_emotion = pd.read_csv("emotion_db.csv")
