@@ -1,6 +1,6 @@
 import pandas as pd
 
-def get_sound_from_keywords(keywords):
+def get_emotions_from_keywords(keywords):
 
     word_emotion = pd.read_csv("emotion_db.csv")
     word_emotion = word_emotion.drop(columns=["anticipation", "surprise", "trust"])
