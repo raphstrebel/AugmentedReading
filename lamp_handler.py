@@ -1,6 +1,7 @@
 import requests
 import json
 import colorsys
+import time
 
 MAX_HUE = 65535
 MAX_SATURATION = 254
@@ -12,7 +13,7 @@ LAMP_ID = "1"
 
 STATE_URL = "http://"+IP_ADDR+"/api/"+USERNAME+"/lights/"+LAMP_ID+"/state"
 
-def displayNewColor(r, g, b, brightness=1):
+def display_new_color(r, g, b, brightness=1):
     """
     Changes the color of the lamp.
 
@@ -33,3 +34,11 @@ def displayNewColor(r, g, b, brightness=1):
     print(body)
     
     return requests.put(STATE_URL, data=json.dumps(body))
+
+def party_mode():
+    for i in range(5):
+        if i%2 == 0:
+            display_new_color(1, 0, 0)
+        if i%2 == 1:
+            display_new_color(0, 1, 0)
+        time.sleep(0.5)

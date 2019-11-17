@@ -3,8 +3,8 @@ import requests as rq
 from matplotlib import colors as rgba_colors
 import numpy as np
 
-def get_color(text):
-    colors_to_count, mood_to_count = colors_count(text)
+def get_color_and_theme(text):
+    colors_to_count, mood_to_count, themes = colors_count(text)
     
     if mood_to_count['light'] + mood_to_count['dark'] > 0:
         mood_ratio = mood_to_count['light']/(mood_to_count['light'] + mood_to_count['dark'])
@@ -25,7 +25,7 @@ def get_color(text):
         
     final_color[3] = mood_ratio
     
-    return final_color
+    return final_color, themes
 
 def get_colors_from_text(text):
     themes = get_themes_from_text(text)
@@ -37,7 +37,7 @@ def get_colors_from_text(text):
                 colors[element_to_color[t]] += 1
             else:
                 colors[element_to_color[t]] = 1
-    return colors
+    return colors, themes
     
 def get_themes_from_text(text):
     themes_to_count = {}
@@ -54,7 +54,7 @@ def colors_count(cleaned_text):
     mood_to_count = {'light': 0, 'dark': 0}
     for word in cleaned_text:
         
-        colors_to_count = get_colors_from_text(cleaned_text)
+        colors_to_count, themes = get_colors_from_text(cleaned_text)
         
         if word in colors:
             c = word
@@ -69,7 +69,7 @@ def colors_count(cleaned_text):
             else:
                 mood_to_count[m] = 1
                 
-    return colors_to_count, mood_to_count
+    return colors_to_count, mood_to_count, themes
 
 def get_dict():
     themes = ["fire", "rain", "wind", "forest","water"]
@@ -85,128 +85,102 @@ def get_dict():
 
 colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet', 'gray']
 
-mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
+mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'cold':'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
 
-element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray'}
+element_to_color = {'dragon': 'red', 'fire':'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white', 'rain':'blue', 'ocean':'blue'}
 
 themes_dict = {
+ 'snow':'cold',
+ 'snowflake':'cold',
+ 'blizzard':'cold',
+ 'blizzards':'cold',
+ 'cold':'cold',
+ 'beach':'ocean',
+ 'sand':'ocean',
+ 'snowflakes':'cold',
  'dragon': 'dragon',
  'monster': 'dragon',
  'water': 'water',
- 'burn': 'fire',
- 'firing': 'fire',
  'gunshots': 'fire',
- 'firecrackers': 'fire',
- 'spark': 'fire',
  'lighted': 'fire',
- 'burning': 'fire',
  'fire': 'fire',
+ 'lava': 'fire',
+ 'magma': 'fire',
+ 'volcano': 'fire',
  'flames': 'fire',
- 'lit': 'fire',
- 'Firecracker': 'fire',
- 'burned': 'fire',
- 'sparks': 'fire',
  'light': 'fire',
- 'scorched': 'fire',
- 'fired': 'fire',
  'flame': 'fire',
- 'storm': 'wind',
+ 'storm': 'storm',
  'flamed': 'fire',
- 'burnt': 'fire',
- 'fiery': 'fire',
- 'blaze': 'fire',
  'flaming': 'fire',
- 'burns': 'fire',
  'deluge': 'rain',
- 'Flood': 'rain',
+ 'flood': 'rain',
  'fires': 'fire',
- 'scorch': 'fire',
- 'storms': 'wind',
- 'torched': 'fire',
- 'sandstorm': 'wind',
+ 'storms': 'storm',
  'wildfire': 'fire',
- 'lightning': 'storm', ###
+ 'lightning': 'white',###
  'sun': 'orange',
  'deluged': 'rain',
- 'crackles': 'fire',
- 'torches': 'fire',
  'showers': 'rain',
  'shower': 'rain',
  'sky': 'wind',
  'mist': 'rain',
  'rain': 'water',
- 'rainfall': 'wind',
+ 'rainfall': 'water',
  'hurricane': 'storm',
  'windy': 'wind',
  'water': 'water',
  'hurricanes': 'storm',
- 'stormy': 'storm', ##
  'windier': 'wind',
- 'Stormy': 'wind',
- 'tempest': 'wind',
- 'typhoon': 'wind',
- 'Tempest': 'wind',
+ 'stormy': 'storm',
+ 'typhoon': 'storm',
+ 'tempest': 'storm',
  'rained': 'rain',
- 'tornados': 'wind',
+ 'tornados': 'storm',
  'raining': 'rain',
  'clouds': 'wind',
- 'thunderstorm': 'storm', ###
+ 'thunderstorm': 'storm',
  'winds': 'wind',
- 'flooding': 'rain',
- 'floods': 'rain',
+ 'flooding': 'water',
+ 'floods': 'water',
  'seawater': 'water',
  'rainy': 'rain',
- 'cyclone': 'wind',
+ 'cyclone': 'storm',
  'mists': 'rain',
- 'tornado': 'wind',
- 'thunderstorms': 'storm', ##
+ 'tornado': 'storm',
  'wind': 'wind',
  'breeze': 'wind',
  'thunder': 'storm', ###
- 'misty': 'rain',
- 'foggy': 'rain',
- 'sail': 'wind',
  'ocean': 'water',
- 'sails': 'wind',
  'vegetation': 'forest',
  'hill': 'forest',
  'lands': 'forest',
  'hills': 'forest',
  'trails': 'forest',
  'plains': 'forest',
- 'land': 'forest',
+ 'tree': 'forest',
  'pine': 'forest',
  'valley': 'forest',
  'foliage': 'forest',
- 'alpine': 'forest',
  'forests': 'forest',
  'trailing': 'forest',
- 'plain': 'forest',
  'mountainous': 'forest',
- 'coral': 'forest',
- 'Valley': 'forest',
+ 'valley': 'forest',
  'rainforest': 'forest',
  'wild': 'forest',
- 'Alpine': 'forest',
- 'Forest': 'forest',
- 'summit': 'forest',
+ 'forest': 'forest',
  'valleys': 'forest',
  'woodland': 'forest',
- 'oak': 'forest',
- 'sapling': 'forest',
- 'willow': 'forest',
  'plantations': 'forest',
  'tropical': 'forest',
  'countryside': 'forest',
  'tree': 'forest',
  'rainforests': 'forest',
- 'walnut': 'forest',
  'prairie': 'forest',
  'woods': 'forest',
  'swamps': 'forest',
  'trees': 'forest',
  'lake': 'water',
- 'park': 'forest',
  'coast': 'water',
  'lake': 'water',
  'hell': 'fire',
@@ -230,7 +204,7 @@ themes_dict = {
  'glaciers': 'water',
  'swamp': 'forest',
  'jungles': 'forest',
- 'Lake': 'water',
+ 'lake': 'water',
  'Park': 'forest',
  'natures': 'forest',
  'mountain': 'forest',
@@ -242,7 +216,7 @@ themes_dict = {
  'wildlife': 'forest',
  'glacial': 'water',
  'grass': 'forest',
- 'Glacier': 'water',
+ 'glacier': 'water',
  'jungle': 'forest',
  'aquatic': 'water',
  'sea': 'water',
@@ -267,5 +241,6 @@ themes_dict = {
  'metro': 'city',
  'plane': 'engine',
  'engine': 'engine',
- 'bike': 'engine'
+ 'bike': 'engine',
+ 'tree':'forest'
 }
