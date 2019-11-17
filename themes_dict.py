@@ -87,7 +87,7 @@ colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet
 theme_to_music = {'dragon': 'dragon_shout',
  'fire': 'calm_fire',
  'city': 'city',
- 'storm': 'strong_wind',
+ 'storm': 'thunder_rain',
  'water': 'light_rain',
  'forest': 'calm_forest',
  'engine': '',
