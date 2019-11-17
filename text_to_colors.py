@@ -1,6 +1,6 @@
 import pandas as pd
 import themes_dict
-from themes_dict import get_color
+from themes_dict import get_color_and_theme
 from keywords_extraction import get_keywords_from_text
 
 
@@ -16,4 +16,4 @@ def text_to_colors_and_emotions(text):
     keywords_emotion.sum(axis=0)
     #############
     
-    return get_color(keywords) # todo get_emotions(keywords)
+    return get_color_and_theme(keywords)[0]
