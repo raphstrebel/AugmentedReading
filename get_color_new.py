@@ -13,6 +13,11 @@ def get_color(theme_freq):
         else:
             color_to_count[color] = theme_freq[theme]
    
+    # START OF CHANGES
+    for color in color_to_count:
+        color_to_count[color] = color_to_count[color]**2
+    # END OF CHANGES   
+    
     final_color = np.zeros(4)
     
     total = 0
