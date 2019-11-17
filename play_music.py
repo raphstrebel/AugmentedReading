@@ -17,7 +17,7 @@ def play_music(music_name):
 			mixer.music.load(music_path)
 			mixer.music.fadeout(2000)
 			mixer.music.play(-1)
-			current_music = music_path
+			current_music = music_name
 		except:
 			pass
 
@@ -35,7 +35,7 @@ def play_sound(song_name):
 			#mixer.music.load(song_path)
 			#mixer.music.fadeout(1500)
 			#mixer.music.play(-1)
-			current_song = song_path
+			current_song = song_name
 			sound_channel = (sound_channel + 1) % 2
 		except:
 			pass
