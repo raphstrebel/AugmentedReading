@@ -2,6 +2,7 @@ import requests
 import json
 import colorsys
 import time
+from threading import Thread
 
 MAX_HUE = 65535
 MAX_SATURATION = 254
@@ -35,10 +36,14 @@ def display_new_color(r, g, b, brightness=1):
     
     return requests.put(STATE_URL, data=json.dumps(body))
 
-def party_mode():
+def party_mode_wrapped():
     for i in range(5):
         if i%2 == 0:
             display_new_color(1, 0, 0)
         if i%2 == 1:
             display_new_color(0, 1, 0)
-        time.sleep(0.5)
+        time.sleep(1)
+
+def party_mode():
+    t = Thread(target=party_mode_wrapped)
+    t.start()

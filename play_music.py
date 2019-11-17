@@ -24,4 +24,3 @@ def stop_sound():
 	global current_song
 	current_song = ""
 	mixer.music.stop()
-
