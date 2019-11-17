@@ -104,7 +104,7 @@ theme_to_music = {'dragon': 'dragon_shout',
  'rain': 'rainy_storm',
  'ocean': 'seagulls',
  'lightning': 'thunder',
- 'wind': 'strong_wind'
+ 'wind': 'thunder_rain'
 }
 
 mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'cold':'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
