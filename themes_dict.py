@@ -52,10 +52,9 @@ def get_themes_from_text(text):
 def colors_count(cleaned_text):
     colors_to_count = {}
     mood_to_count = {'light': 0, 'dark': 0}
+    colors_to_count, themes = get_colors_from_text(cleaned_text)
+    
     for word in cleaned_text:
-        
-        colors_to_count, themes = get_colors_from_text(cleaned_text)
-        
         if word in colors:
             c = word
             if c in colors_to_count.keys():
