@@ -13,7 +13,7 @@ def play_music(music_name):
 		return
 	else:
 		try:
-			music_path = 'sound/' + music_name + '.wav'
+			music_path = 'music/' + music_name + '.wav'
 			mixer.music.load(music_path)
 			mixer.music.fadeout(2000)
 			mixer.music.play(-1)
