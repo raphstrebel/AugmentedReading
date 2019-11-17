@@ -20,6 +20,11 @@ def highest_emotion(nAnger, nJoy, nFear, nSadness):
     labels = ["anger", "joy", "fear", "sadness"]
     counts = [nAnger, nJoy, nFear, nSadness]
     
+    m = max(counts)
+    
+    if m == 0:
+        return ''
+    
     for i in range(4):
-        if counts[i] == max(counts):
+        if counts[i] == m:
             return labels[i]
