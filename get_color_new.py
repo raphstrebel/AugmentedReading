@@ -15,7 +15,7 @@ def get_color(theme_freq):
     final_color = np.zeros(4)
     
     total = 0
-    for color, count in colors_to_count.items():
+    for color, count in color_to_count.items():
         final_color += np.array(rgba_colors.to_rgba(color)) * count
         total += count
     
