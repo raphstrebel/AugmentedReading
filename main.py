@@ -45,10 +45,10 @@ def display_frame(frame, text, color, iteration, music_name, sound_name):
 	cv2.putText(yo2, "iteration: " + str(iteration), (700, 80), font, 2, white, 2)
 
 	### print music name
-	cv2.putText(yo2, "music: " + music_name, (700, 130), font, 2, white, 2)
+	cv2.putText(yo2, "music: " + str(music_name), (700, 130), font, 2, white, 2)
 
 	### print music name
-	cv2.putText(yo2, "sound: " + sound_name, (700, 180), font, 2, white, 2)
+	cv2.putText(yo2, "sound: " + str(sound_name), (700, 180), font, 2, white, 2)
 
 	cv2.imshow("Control panel", yo2)
 
@@ -69,13 +69,18 @@ if __name__=="__main__":
         frame = capture_frame(webcam, WINDOW_SIZE)
         text = extract_text(frame)
 
-        args = get_all_parameters(text)
-        music = get_music(args)
-        sound = get_sound(args)
-        (r, g, b, brightness) = get_color(args)#
+        try:
+            args = get_all_parameters(text)
+            music = get_music(args)
+            sound = get_sound(args)
+            (r, g, b, brightness) = get_color(args)
 
-        display_new_color(r, g, b, brightness=brightness)
-        display_frame(frame, text, (r,g,b), iteration, music, sound)
+        
+        	#display_new_color(r, g, b, brightness=brightness)
+            play_sound(sound)
+            display_frame(frame, text, (r,g,b), iteration, music, sound)
+        except Exception as e:
+            print("someone screwed up here", e)
         #### END MAIN BODY
 
         key = cv2.waitKey(1)
