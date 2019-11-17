@@ -11,6 +11,8 @@ def play_music(music_name):
 	global current_music
 	if(current_music == music_name):
 		return
+	elif(music_name == "" or song_name == None):
+		stop_music()
 	else:
 		try:
 			music_path = 'music/' + music_name + '.mp3'
@@ -28,6 +30,8 @@ def play_sound(song_name):
 	global sound_channel
 	if(current_song == song_name):
 		return
+	elif(song_name == "" or song_name ==None):
+		stop_sound()
 	else:
 		try:
 			song_path = 'sound/' + song_name + '.wav'
@@ -35,9 +39,6 @@ def play_sound(song_name):
 			sound.set_volume(0.5)
 			mixer.Channel(sound_channel).fadeout(2000)
 			mixer.Channel((sound_channel + 1)%2).play(sound,-1, fade_ms = 2000)
-			#mixer.music.load(song_path)
-			#mixer.music.fadeout(1500)
-			#mixer.music.play(-1)
 			current_song = song_name
 			sound_channel = (sound_channel + 1) % 2
 		except:
@@ -46,5 +47,9 @@ def play_sound(song_name):
 def stop_sound():
 	global current_song
 	current_song = ""
-	mixer.Channel(0).stop()
-	mixer.Channel(1).stop()
+	mixer.Channel(0).fadeout(2000)
+	mixer.Channel(1).fadeout(2000)
+def stop_music():
+	global current_music
+	current_music = ""
+	mixer.music.fadeout(2000)
