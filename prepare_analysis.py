@@ -4,7 +4,6 @@ from themes_dict import get_color_and_theme, themes_dict, theme_to_music
 
 def get_all_parameters(text):
     keywords = get_keywords_from_text(text)
-    
     emotions = get_emotions_from_keywords(keywords)
     single_emotion = best_emotion(emotions)
     
