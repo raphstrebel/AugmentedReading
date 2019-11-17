@@ -15,6 +15,7 @@ def play_music(music_name):
 		try:
 			music_path = 'music/' + music_name + '.wav'
 			mixer.music.load(music_path)
+			mixer.music.set_volume(2)
 			mixer.music.fadeout(2000)
 			mixer.music.play(-1)
 			current_music = music_name
@@ -30,6 +31,7 @@ def play_sound(song_name):
 		try:
 			song_path = 'sound/' + song_name + '.wav'
 			sound = mixer.Sound(song_path)
+			sound.set_volume(0.5)
 			mixer.Channel(sound_channel).fadeout(2000)
 			mixer.Channel((sound_channel + 1)%2).play(sound,-1, fade_ms = 2000)
 			#mixer.music.load(song_path)
