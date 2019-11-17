@@ -75,7 +75,7 @@ if __name__=="__main__":
             sound = get_sound(args)
             (r, g, b, brightness) = get_color(args)
 
-            display_new_color(r, g, b, brightness=brightness)
+            #display_new_color(r, g, b, brightness=brightness)
             play_sound(sound)
             play_music(music)
             display_frame(frame, text, (r,g,b), iteration, music, sound)
