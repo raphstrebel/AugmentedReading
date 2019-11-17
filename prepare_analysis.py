@@ -9,6 +9,8 @@ def get_all_parameters(text):
     single_emotion = best_emotion(emotions)
     
     color, theme = get_color_and_theme(keywords)
+    
+    print(theme)
     single_theme = max(k for k, v in theme.items() if v != 0)
     
     return color, single_emotion, single_theme
