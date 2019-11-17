@@ -1,9 +1,10 @@
 from video_capture import *
 from text_extraction import *
 from lamp_handler import *
-from color_getter import *
 from themes_dict import *
 from text_to_colors import *
+from prepare_analysis import *
+from play_music import *
 import cv2
 import time
 
@@ -18,7 +19,7 @@ def to_BGR(color):
 	print(hey)
 	return hey
 
-def display_frame(frame, text, color, iteration):
+def display_frame(frame, text, color, iteration, music_name, sound_name):
 	### hack
 	cv2.imwrite('todel.png', frame)
 
@@ -43,6 +44,12 @@ def display_frame(frame, text, color, iteration):
 	### print iteration number
 	cv2.putText(yo2, "iteration: " + str(iteration), (700, 80), font, 2, white, 2)
 
+	### print music name
+	cv2.putText(yo2, "music: " + music_name, (700, 130), font, 2, white, 2)
+
+	### print music name
+	cv2.putText(yo2, "sound: " + sound_name, (700, 180), font, 2, white, 2)
+
 	cv2.imshow("Control panel", yo2)
 
 def get_occurrences_from_text(text):
@@ -61,9 +68,14 @@ if __name__=="__main__":
         #### MAIN BODY OF THE LOOP
         frame = capture_frame(webcam, WINDOW_SIZE)
         text = extract_text(frame)
-        (r, g, b, brightness) = text_to_colors_and_emotions(text)
+
+        args = get_all_parameters(text)
+        music = get_music(args)
+        sound = get_sound(args)
+        (r, g, b, brightness) = get_color(args)#
+
         display_new_color(r, g, b, brightness=brightness)
-        display_frame(frame, text, (r,g,b), iteration)
+        display_frame(frame, text, (r,g,b), iteration, music, sound)
         #### END MAIN BODY
 
         key = cv2.waitKey(1)
