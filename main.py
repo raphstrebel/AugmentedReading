@@ -1,10 +1,18 @@
 from video_capture import *
 from text_extraction import *
 from lamp_handler import *
-from themes_dict import *
-from text_to_colors import *
-from prepare_analysis import *
 from play_music import *
+
+from get_color_new import *
+from get_sound_new import *
+from moods_new import *
+from sanitize_new import *
+from themes_new import *
+
+#from themes_dict import *
+#from text_to_colors import *
+#from prepare_analysis import *
+
 import cv2
 import time
 
@@ -19,7 +27,7 @@ def to_BGR(color):
 	print(hey)
 	return hey
 
-def display_frame(frame, text, color, iteration, music_name, sound_name):
+def display_frame(frame, words, color, iteration, music_name, sound_name):
 	### hack
 	cv2.imwrite('todel.png', frame)
 
@@ -36,7 +44,7 @@ def display_frame(frame, text, color, iteration, music_name, sound_name):
 	cv2.rectangle(yo2, (405, 0), (430, 720), to_BGR(color), -1)
 
 	### print keywords occurences
-	occurrences = get_occurrences_from_text(text)
+	occurrences = get_occurrences_from_words(words)
 	for i in range(len(occurrences)):
 		bottomLeftCornerOfText = (430, i * 40 + 20)
 		cv2.putText(yo2, occurrences[i], bottomLeftCornerOfText, font, 1, white, 2)
@@ -52,9 +60,8 @@ def display_frame(frame, text, color, iteration, music_name, sound_name):
 
 	cv2.imshow("Control panel", yo2)
 
-def get_occurrences_from_text(text):
-	keywords = get_keywords_from_text(text)
-	occurrences = [(word, keywords.count(word)) for word in set(keywords)]
+def get_occurrences_from_words(words):
+	occurrences = [(word, words.count(word)) for word in set(words)]
 	sorted_occurrences_str = [ word +' '+ str(occ) for word, occ in sorted(occurrences, key=lambda x:-x[1])]
 	return sorted_occurrences_str
 
@@ -66,23 +73,34 @@ if __name__=="__main__":
         capture_frame(webcam, WINDOW_SIZE) # To remove the last frame from the buffer
         
         #### MAIN BODY OF THE LOOP
-        frame = capture_frame(webcam, WINDOW_SIZE)
-        text = extract_text(frame)
+        
 
         try:
-            args = get_all_parameters(text)
-            music = get_music(args)
-            sound = get_sound(args)
-            (r, g, b, brightness) = get_color(args)
+            frame = capture_frame(webcam, WINDOW_SIZE)
+            text = extract_text(frame)
+        	
+            a1 = sanitize(text)
 
-            display_new_color(r, g, b, brightness=brightness)
+            music = get_music(a1)
+
+            a2 = themes_to_count(a1)
+
+            (r, g, b, brightness) = get_color(a2)
+            sound = get_sound(a2)
+
+            #args = get_all_parameters(text)
+            #music = get_music(args)
+            #sound = get_sound(args)
+            #(r, g, b, brightness) = get_color(args)
+
+            #display_new_color(r, g, b, brightness=brightness)
             play_sound(sound)
             play_music(music)
-            display_frame(frame, text, (r,g,b), iteration, music, sound)
+            display_frame(frame, a1, (r,g,b), iteration, music, sound)
         except Exception as e:
             print("someone screwed up here", e)
         #### END MAIN BODY
 
         key = cv2.waitKey(1)
-        time.sleep(2)
+        time.sleep(4)
         iteration+=1
