@@ -100,6 +100,7 @@ theme_to_music = {'dragon': 'dragon_shout',
  'maroon': '',
  'violet': '',
  'gray': '',
+ 'gold': '',
  'cold': 'cold',
  'rain': 'rainy_storm',
  'ocean': 'seagulls',
@@ -109,7 +110,7 @@ theme_to_music = {'dragon': 'dragon_shout',
 
 mood = {'obscure' : 'dark', 'dark': 'dark', 'tenebrous':'dark', 'shadowy':'dark','crepuscular':'dark', 'sunny': 'light', 'bright': 'light', 'light': 'light', 'cold':'light', 'sun': 'light', 'cloud': 'dark', 'storm': 'dark', 'lightning': 'light'}
 
-element_to_color = {'dragon': 'red', 'fire': 'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white', 'rain':'blue', 'ocean':'blue', 'lightning':'white', 'wind':'gray'}
+element_to_color = {'dragon': 'red', 'fire': 'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white', 'rain':'blue', 'ocean':'blue', 'lightning':'white', 'wind':'gray', 'gold':'yellow'}
 
 themes_dict = {
  'snow':'cold',
@@ -123,6 +124,7 @@ themes_dict = {
  'dragon': 'dragon',
  'monster': 'dragon',
  'water': 'water',
+ 'gold': 'gold',
  'gunshots': 'fire',
  'lighted': 'fire',
  'fire': 'fire',
