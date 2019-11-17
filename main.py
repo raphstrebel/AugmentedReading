@@ -88,12 +88,13 @@ if __name__=="__main__":
             (r, g, b, brightness) = get_color(a2)
             sound = get_sound(a2)
 
-            #args = get_all_parameters(text)
-            #music = get_music(args)
-            #sound = get_sound(args)
-            #(r, g, b, brightness) = get_color(args)
 
-            #display_new_color(r, g, b, brightness=brightness)
+            ### updating colors:
+            if sound=="thunder_rain":
+            	thunder(r, g, b)
+            else:
+            	display_new_color(r, g, b, brightness=brightness)
+
             play_sound(sound)
             play_music(music)
             display_frame(frame, a1, (r,g,b), iteration, music, sound)
