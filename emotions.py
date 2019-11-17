@@ -1,12 +1,12 @@
 import pandas as pd
 
-emotion_to_music = {'anger': '',
+emotion_to_music = {'anger': 'angry',
  'disgust': '',
- 'fear': '',
- 'joy': '',
+ 'fear': 'fear',
+ 'joy': 'happy',
  'negative': '',
  'positive': '',
- 'sadness': ''
+ 'sadness': 'sad'
 }
 
 def get_emotions_from_keywords(keywords):
