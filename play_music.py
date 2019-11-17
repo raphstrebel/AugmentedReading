@@ -11,7 +11,7 @@ def play_music(music_name):
 	global current_music
 	if(current_music == music_name):
 		return
-	elif(music_name == "" or song_name == None):
+	elif(music_name == "" or music_name == None):
 		stop_music()
 	else:
 		try:
