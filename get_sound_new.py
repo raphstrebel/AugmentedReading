@@ -44,6 +44,6 @@ theme_to_sound = {
  'ocean': 'seagulls',
  'lightning': 'thunder',
  'wind': 'thunder_rain',
- 'war' : 'war'
+ 'war' : 'medieval_war'
 }
 
