@@ -4,17 +4,15 @@ word_emotion = pd.read_csv("emotion_db.csv")
 word_emotion = word_emotion.drop(columns=["anticipation", "surprise", "trust", "disgust", "positive", "negative"])
 
 def get_music(words):
-    nAnger = 0
-    nJoy = 0
-    nFear = 0
-    nSadness = 0
-    for w in words:
-        row = word_emotion[word_emotion.word==w]
-        if len(row) > 0:
-            nAnger += row["anger"].values[0]
-            nJoy += row["joy"].values[0]
-            nSadness += row["sadness"].values[0]
-            nFear += row["fear"].values[0]
+    keywords_df = pd.DataFrame(words, columns= ["word"], dtype="str")
+    keywords_emotion = word_emotion.merge(keywords_df, on="word").drop(columns="word")
+    
+    emotions_to_val = keywords_emotion.sum(axis=0).to_dict()
+    
+    nAnger = emotions_to_val['anger']
+    nJoy = emotions_to_val['joy']
+    nFear = emotions_to_val['fear']
+    nSadness = emotions_to_val['sadness']
 
     return highest_emotion(nAnger, nJoy, nFear, nSadness)
             

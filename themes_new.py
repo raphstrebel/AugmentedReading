@@ -16,6 +16,8 @@ words_to_themes = {
  'snowflake':'cold',
  'blizzard':'cold',
  'blizzards':'cold',
+ 'sand': 'gold',
+ 'rich': 'gold',
  'cold':'cold',
  'beach':'ocean',
  'sand':'ocean',
