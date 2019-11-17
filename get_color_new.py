@@ -1,3 +1,5 @@
+import numpy as np
+
 def get_color(theme_freq):
     color_to_count = {}
     for theme in theme_freq.keys():

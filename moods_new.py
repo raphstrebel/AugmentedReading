@@ -10,13 +10,11 @@ def get_music(words):
     nSadness = 0
     for w in words:
         row = word_emotion[word_emotion.word==w]
-        print(row)
         if len(row) > 0:
             nAnger += row["anger"].values[0]
             nJoy += row["joy"].values[0]
             nSadness += row["sadness"].values[0]
             nFear += row["fear"].values[0]
-        print(nAnger, nJoy, nFear, nSadness)
 
     return highest_emotion(nAnger, nJoy, nFear, nSadness)
             
