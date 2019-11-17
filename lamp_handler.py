@@ -14,6 +14,18 @@ LAMP_ID = "1"
 
 STATE_URL = "http://"+IP_ADDR+"/api/"+USERNAME+"/lights/"+LAMP_ID+"/state"
 
+def switch_light(on):
+    """
+    Switches the light on (True) of off (False)
+
+    args:
+        on (boolean)
+    """
+
+    body = {"on":on}
+    
+    return requests.put(STATE_URL, data=json.dumps(body))
+
 def display_new_color(r, g, b, brightness=1):
     """
     Changes the color of the lamp.
