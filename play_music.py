@@ -14,9 +14,10 @@ def play_music(music_name):
 	else:
 		try:
 			music_path = 'music/' + music_name + '.wav'
-			mixer.music.load(music_path)
-			mixer.music.set_volume(2)
 			mixer.music.fadeout(2000)
+			print(music_path)
+			mixer.music.load(music_path)
+			mixer.music.set_volume(1.5)
 			mixer.music.play(-1)
 			current_music = music_name
 		except:
