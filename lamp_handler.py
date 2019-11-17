@@ -48,14 +48,21 @@ def display_new_color(r, g, b, brightness=1):
     
     return requests.put(STATE_URL, data=json.dumps(body))
 
-def party_mode_wrapped():
-    for i in range(5):
-        if i%2 == 0:
-            display_new_color(1, 0, 0)
-        if i%2 == 1:
-            display_new_color(0, 1, 0)
-        time.sleep(1)
+def thunder_wrapped(r, g, b):
+    display_new_color(1, 1, 1) # white
+    time.sleep(0.1)
+    switch_light(False)
+    time.sleep(0.3)
+    switch_light(True)
+    time.sleep(0.1)
+    switch_light(False)
+    time.sleep(0.6)
+    switch_light(True)
+    time.sleep(0.3)
+    switch_light(False)
+    time.sleep(0.6)
+    display_new_color(r, g, b)
 
-def party_mode():
-    t = Thread(target=party_mode_wrapped)
+def thunder(r, g, b):
+    t = Thread(target=thunder_wrapped, args=(r, g, b))
     t.start()
