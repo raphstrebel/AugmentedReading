@@ -84,7 +84,8 @@ def get_dict():
 
 colors = ['blue', 'red', 'white', 'green', 'yellow', 'orange', 'maroon', 'violet', 'gray']
 
-theme_to_music = {'dragon': 'dragon_shout',
+theme_to_music = {
+ 'dragon': 'dragon_shout',
  'fire': 'calm_fire',
  'city': 'city',
  'storm': 'thunder_rain',

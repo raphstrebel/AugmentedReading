@@ -25,7 +25,7 @@ def best_emotion(emotions):
     if sum(emotions.values()) == 0:
         return None
 
-    if (emotions["positive"] >= emotions["negative"] or emotions["joy"] >= max(negative_emotions, key=lambda x: x[1])[1]):
+    if (emotions["positive"] > emotions["negative"] or emotions["joy"] >= max(negative_emotions, key=lambda x: x[1])[1]):
         return "joy"
     else:
         return max(negative_emotions, key=lambda x: x[1])[0]
