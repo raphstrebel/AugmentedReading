@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import colors as rgba_colors
 
 def get_color(theme_freq):
     color_to_count = {}
