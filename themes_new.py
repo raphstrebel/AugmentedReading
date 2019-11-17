@@ -12,6 +12,16 @@ def themes_to_count(words):
     return to_ret
         
 words_to_themes = {
+ 'war': 'war',
+ 'swords': 'war',
+ 'sword': 'war',
+ 'wars': 'war',
+ 'battle': 'war',
+ 'battles': 'war',
+ 'soldier': 'war',
+ 'soldiers': 'war',
+ 'blood': 'war',
+ 'enemies': 'war',
  'snow':'cold',
  'snowflake':'cold',
  'blizzard':'cold',

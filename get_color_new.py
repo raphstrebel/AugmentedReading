@@ -34,4 +34,4 @@ def get_color(theme_freq):
     
     return final_color
     
-themes_to_color = {'dragon': 'red', 'fire': 'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white', 'rain':'blue', 'ocean':'blue', 'lightning':'white', 'wind':'gray', 'gold':'yellow'}
+themes_to_color = {'dragon': 'red', 'fire': 'red', 'city': 'gray', 'storm':'blue', 'water':'blue', 'forest':'green', 'engine':'gray', 'blue':'blue', 'red':'red', 'white':'white', 'green':'green', 'yellow':'yellow', 'orange':'orange', 'maroon':'maroon', 'violet':'violet', 'gray':'gray', 'cold':'white', 'rain':'blue', 'ocean':'blue', 'lightning':'white', 'wind':'gray', 'gold':'yellow', 'war':'red'}
