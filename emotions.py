@@ -11,7 +11,7 @@ def get_emotions_from_keywords(keywords):
     return keywords_emotion.sum(axis=0).to_dict()
 
 def best_emotion(emotions):
-    negative_emotions = [(emotion, count) for emotion, count in emotions if emotion not in ["joy", "positive", "negative"]]
+    negative_emotions = [(emotion, count) for emotion, count in emotions.items() if emotion not in ["joy", "positive", "negative"]]
 
     if (emotions["positive"] >= emotions["negative"] or emotions["joy"] >= max(negative_emotions, key=lambda x: x[1])[1]):
         return "joy"
